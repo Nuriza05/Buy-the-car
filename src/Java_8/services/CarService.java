@@ -12,7 +12,7 @@ public interface CarService {
 
     List<Car>getAll();
 
-    List<Person>findByName(String name, List<Person>people);
+    List<Car>findByName(String name, List<Person>people);
 
     List<Car>findByCountry(String name,List<Person>persons);
 }

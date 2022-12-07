@@ -3,6 +3,7 @@ import Java_8.classes.Person;
 import Java_8.enums.Colour;
 import Java_8.enums.Country;
 import Java_8.enums.Gender;
+import Java_8.services.Impl.CarServiceImpl;
 import Java_8.services.Impl.PersonServiceImpl;
 
 import java.math.BigDecimal;
@@ -29,32 +30,60 @@ public class Main {
         List<Person>people=new LinkedList<>(Arrays.asList(p1,p2,p3));
 
         PersonServiceImpl person = new PersonServiceImpl();
+        CarServiceImpl car = new CarServiceImpl();
 
         System.out.println("""
                 1. Create people!
-                2. Get all people!
-                3. Buy the car!
-                4. Sort by date of birth!
-                5. Sort by names!
-                6. Sort by gender!
-                7. Get age!
+                2. Remove person!
+                3. Get all people!
+                4. Find by person's name!
+                5. Find people by car's name!
+                6. Buy the car!
+                7. Sort by date of birth!
+                8. Sort by people's name!
+                9. Sort by gender!
+                10. Get age!
+                11. Create cars!
+                12. Remove car!
+                13. Get all cars!
+                14. Find car by name!
+                15. Find car by country!
                 """);
         while (true){
         int number = new Scanner(System.in).nextInt();
         switch (number){
             case 1:   System.out.println(person.createPerson(people));          break;
-            case 2:   System.out.println(person.getAll());                      break;
-            case 3:   System.out.print("Write the person name: ");
+            case 2:   System.out.print("Write the person name: ");
+                      String name = new Scanner(System.in).next();
+                      System.out.println(person.removePerson(name,people));     break;
+            case 3:   System.out.println(person.getAll());                      break;
+            case 4:   System.out.print("Write the person name: ");
+                      String namme = new Scanner(System.in).next();
+                      System.out.println(person.findByName(namme, people));     break;
+            case 5:   System.out.print("Write the car name: ");
+                      String nammme = new Scanner(System.in).next();
+                      System.out.println(person.findByCarName(nammme, people)); break;
+            case 6:   System.out.print("Write the person name: ");
                       String n = new Scanner(System.in).next();
                       System.out.print("Write the car name: ");
                       String c = new Scanner(System.in).next();
-                      System.out.println(person.payCars(n, people, c, cars));
-                      System.out.println(p1);                                   break;
-            case 4:   System.out.println(person.sortPersonDateOfBirth(people)); break;
-            case 5:   System.out.println(person.sortPersonName(people));        break;
-            case 6:   System.out.println(person.sortGender(people));            break;
-            case 7:   System.out.println(person.getAge(p2));                    break;
-           }
+                      System.out.println(person.payCars(n, people, c, cars));   break;
+            case 7:   System.out.println(person.sortPersonDateOfBirth(people)); break;
+            case 8:   System.out.println(person.sortPersonName(people));        break;
+            case 9:   System.out.println(person.sortGender(people));            break;
+            case 10:  System.out.println(person.getAge(p2));                    break;
+            case 11:  System.out.println(car.createCar(cars));                  break;
+            case 12:  System.out.print("Write the car's name!");
+                      String carName = new Scanner(System.in).next();
+                      System.out.println(car.removeCar(carName, cars));         break;
+            case 13:  System.out.println(car.getAll());                         break;
+            case 14:  System.out.print("Write the car's name!");
+                      String carNamme = new Scanner(System.in).next();
+                      System.out.println(car.findByName(carNamme,people));      break;
+            case 15: System.out.print("Write the Country of car! ");
+                     String cname = new Scanner(System.in).next();
+                     System.out.println(car.findByCountry(cname, people));      break;
+        }
         }
     }
 }

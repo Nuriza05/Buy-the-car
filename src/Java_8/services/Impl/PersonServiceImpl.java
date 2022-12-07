@@ -35,7 +35,7 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public List<Person> findByName(String name, List<Person> people) {
         List<Person>people1=new LinkedList<>();
-        for (Person person : people1) {
+        for (Person person : people) {
             if(person.getName().equals(name))
                 people1.add(person);
         }
@@ -62,11 +62,14 @@ public class PersonServiceImpl implements PersonService {
                         if (value >= 0){
                             if(person.getCars()==null){
                                 person.setCars(List.of(car));
+                                this.cars.removeAll(cars);
                                 this.cars.add(car);
+                                cars.remove(car);
                                 person.setMoney(person.getMoney().subtract(car.getPrice()));
                             }else{
                                 person.setCars(this.cars);
                                 this.cars.add(car);
+                                cars.remove(car);
                                 person.setMoney(person.getMoney().subtract(car.getPrice()));
                             }
                             return "Successfully paid car!";
@@ -77,7 +80,7 @@ public class PersonServiceImpl implements PersonService {
                 }
             }
         }
-            return "Car is successfully bought!";
+            return "Car was sell!";
     }
     public static Comparator<Person> sortPersonDateOfBirth = new Comparator<Person>() {
         @Override

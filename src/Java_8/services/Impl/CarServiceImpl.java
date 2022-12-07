@@ -29,12 +29,15 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public List<Person> findByName(String name, List<Person> people) {
-        List<Person>people1=new LinkedList<>();
+    public List<Car> findByName(String name, List<Person> people) {
+     List<Car>cars1 = new LinkedList<>();
         for (Person person : people) {
-            if(person.getName().equals(name))
-                people1.add(person);
-        }return people1;
+            for (Car car : person.getCars()) {
+                if (car.getName().equals(name)) {
+                    cars1.add(car);
+                }
+            }
+        }return cars1;
     }
 
     @Override
